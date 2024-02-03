@@ -10,15 +10,16 @@
 # docker build --build-arg SOLR_VERSION=8.11 -f ./dspace/src/main/docker/dspace-solr/Dockerfile .
 # This will be published as dspace/dspace-solr:$DSPACE_VERSION
 
-ARG SOLR_VERSION=8.11
+ARG SOLR_VERSION=9.4
 
-FROM solr:${SOLR_VERSION}-slim
+FROM solr:${SOLR_VERSION}
 
 ENV AUTHORITY_CONFIGSET_PATH=/opt/solr/server/solr/configsets/authority/conf \
     OAI_CONFIGSET_PATH=/opt/solr/server/solr/configsets/oai/conf \
     SEARCH_CONFIGSET_PATH=/opt/solr/server/solr/configsets/search/conf \
     STATISTICS_CONFIGSET_PATH=/opt/solr/server/solr/configsets/statistics/conf \
-    QAEVENT_CONFIGSET_PATH=/opt/solr/server/solr/configsets/qaevent/conf
+    QAEVENT_CONFIGSET_PATH=/opt/solr/server/solr/configsets/qaevent/conf \
+    SOLR_MODULES=analysis-extras,extraction
     
 USER root
 
